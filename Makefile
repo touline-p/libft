@@ -1,9 +1,5 @@
 NAME	=	libft.a
 
-HEADER	=	./includes/
-
-OBJDIR	=	./obj/
-
 CC	=	gcc
 
 CFLAGS	=	-Werror -Wall -Wextra -g
@@ -37,14 +33,6 @@ FILES	=	ft_strlcat.c \
 		ft_memcmp.c \
 		ft_memchr.c \
 		ft_memset.c \
-		ft_lstiter.c \
-		ft_lstnew.c \
-		ft_lstdelone.c \
-		ft_lstadd_front.c \
-		ft_lstmap.c \
-		ft_lstclear.c \
-		ft_lstlast.c \
-		ft_lstsize.c \
 		ft_isalpha.c \
 		ft_isprint.c \
 		ft_isdigit.c \
@@ -52,39 +40,56 @@ FILES	=	ft_strlcat.c \
 		ft_isalnum.c \
 		ft_itoa.c \
 		ft_atoi.c \
-		ft_memccpy.c \
 		ft_putendl_fd.c \
 		ft_putstr_fd.c \
 		ft_putchar_fd.c \
 		ft_putnbr_fd.c \
+	
+BFILES	=	ft_lstiter.c \
+		ft_lstnew.c \
+		ft_lstdelone.c \
+		ft_lstadd_front.c \
+		ft_lstmap.c \
+		ft_lstclear.c \
+		ft_lstlast.c \
+		ft_lstsize.c \
+		ft_lstadd_back.c \
 
-ODIR	=	obj/
+HFILES	=	libft.h\
 
-SDIR	=	src/
+ODIR	=	./
 
-SRCS	=	$(addprefix $(SDIR), $(FILES))
+HDIR	=	./
+
+SRCS	=	$(FILES)
 
 OBJS	=	$(addprefix $(ODIR), $(FILES:.c=.o))
 
-all	:	$(NAME)
+BOBJS	=	$(addprefix $(ODIR), $(BFILES:.c=.o))
 
-$(NAME)	:	$(OBJS) $(HEADER)
+all	:	 $(ODIR) $(NAME)
+
+$(NAME)	:	$(OBJS) 
 	$(AR) $(ARFLAGS) $(NAME) $(OBJS) 
 	ranlib $(NAME)
 
-obj/%.o	:	src/%.c
-	$(CC) $(CFLAGS) -I $(HEADER) -o $@ -c $<
+$(ODIR)	:
+	mkdir $(ODIR)
+
+$(ODIR)%.o	:	%.c $(HFILES)
+	$(CC) $(CFLAGS) -I $(HDIR) -o $@ -c $<
 
 clean	:
-	rm -rf $(OBJS)
+	-rm -rf $(OBJS)
+	-rm -rf $(BOBJS)
 
 fclean	:	clean
-	rm $(NAME)
+	-rm $(NAME)
 
 re	:	fclean all
 
-ncpy	:	all
-	cp $(NAME) ~/lib/
-	cp $(HEADER)libft.h ~/lib/libft.h
+bonus	:	$(BOBJS) $(OBJS) $(HEADER)
+	$(AR) $(ARFLAGS) $(NAME) $(OBJS) $(BOBJS)
+	ranlib $(NAME)
 
-.PHONY	:	all clean fclean re ncpy
+.PHONY	:	all clean fclean re ncpy bonus
