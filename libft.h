@@ -49,7 +49,9 @@ char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strtrim(char const *s1, char const *set);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 int			ft_atoi(const char *nptr);
+int			ft_atoi_has_overflown(char *str);
 char		*ft_itoa(int n);
+
 typedef struct s_list
 {
 	void			*content;

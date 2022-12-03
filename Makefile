@@ -44,6 +44,8 @@ FILES	=	ft_strlcat.c \
 		ft_putstr_fd.c \
 		ft_putchar_fd.c \
 		ft_putnbr_fd.c \
+		ft_swap.c \
+		ft_memdup.c \
 	
 BFILES	=	ft_lstiter.c \
 		ft_lstnew.c \

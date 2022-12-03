@@ -57,3 +57,10 @@ int	ft_atoi(const char *nptr)
 	}
 	return (sign * res);
 }
+
+int	ft_atoi_check_of(char *str)
+{
+	if (*str != '-' || *(str + 1) != '1' || *(str + 2) != 0)
+		return (1);
+	return (0);
+}
