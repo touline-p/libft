@@ -16,7 +16,7 @@ char	*ft_strrchr(const char *s, int c)
 	char	*tmp;
 	char	*pin;
 
-	if (c == 0)
+	if ((unsigned char)c == 0)
 		return ((char *)(s + ft_strlen(s)));
 	pin = NULL;
 	tmp = ft_strchr(s, c);

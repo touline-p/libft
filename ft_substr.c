@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include "libft.h" 
+#include <stdio.h>
 
-static int	ret_min(int a, int b)
+static int	ret_min(unsigned int a, unsigned int b)
 {
 	if (a < b)
 		return (a);
@@ -24,6 +25,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*dst;
 	char	*tmp;
 
+	if (start >= ft_strlen(s))
+		return (ft_strdup(""));
 	len = ret_min(ft_strlen(s + start), len);
 	dst = malloc((len + 1) * sizeof(char));
 	if (!dst || !s)
